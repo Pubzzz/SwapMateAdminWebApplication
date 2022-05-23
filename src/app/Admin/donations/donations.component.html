@@ -1,0 +1,67 @@
+<div id="app" data-app-name="Donation List" *ngIf="isLoading"></div>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Donations List</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item" style="font-weight: bolder;" (click)="logMeOut()"><a href="#">Log Out</a></li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <div class="btns">
+      <button type="button" class="btn  btn-primary" style="margin-left: 13px; text-align: center;" (click)="clearDonations()">Clear Selected Donations</button>
+</div>
+<!-- /.card-header -->
+<div class="card-body" style="line-height: 1;">
+<table id="example1" class="table table-bordered table-striped"datatable [dtOptions]="dtOptions" *ngIf="!isLoading">
+<thead>
+  <tr>
+    <th></th>
+    <th>Item</th>
+    <th>Category</th>
+    <th>Type</th>
+    <th>Size</th>
+    <th>Date</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let item of donations;">
+    <th><input type="checkbox" style="align-items:center;" (change)="onToggle(item)"></th>
+    <td>{{item.did}}</td>
+    <td>{{item.category}}</td>
+    <td>{{item.type}}</td>
+    <td>{{item.size}}</td>
+    <td>{{item.date}}</td>
+  </tr>
+  <!--<tr>
+    <th><input type="checkbox" style="align-items:center;"></th>
+    <td>2</td>
+    <td>Mens' Wear</td>
+    <td>Shirt</td>
+    <td>M</td>
+    <td>10/10/2020</td>
+  </tr>
+  <tr>
+    <th><input type="checkbox" style="align-items:center;"></th>
+    <td>3</td>
+    <td>Mens' Wear</td>
+    <td>Pants</td>
+    <td>XL</td>
+    <td>10/10/2020</td>
+  </tr>-->
+</tbody>
+</table>
+</div>
+<!-- /.card-body -->
+</div>
+<!-- /.card -->
+

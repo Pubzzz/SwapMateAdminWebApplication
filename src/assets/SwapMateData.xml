@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Apparels>
+<ApparelType>
+    <app>
+        <id>0</id>
+        <name>Bridal Wear</name>
+        <score>50</score>
+    </app>
+    <app>
+        <id>1</id>
+        <name>Party Frocks</name>
+        <score>25</score>
+    </app>
+    <app>
+        <id>2</id>
+        <name>Ordinary Frocks</name>
+        <score>15</score>
+    </app>
+    <app>
+        <id>3</id>
+        <name>Crop Tops</name>
+        <score>10</score>
+    </app>
+    <app>
+        <id>4</id>
+        <name>Blouses</name>
+        <score>10</score>
+    </app>
+    <app>
+        <id>5</id>
+        <name>Ladies' Office Trousers</name>
+        <score>20</score>
+    </app>
+    <app>
+        <id>6</id>
+        <name>Ladies' Denims</name>
+        <score>22</score>
+    </app>
+    <app>   
+        <id>7</id>
+        <name>Ladies' Leggings</name>
+        <score>10</score>
+    </app>
+    <app>
+        <id>8</id>
+        <name>Ladies' Skirts</name>
+        <score>10</score>
+    </app>
+    <app>
+        <id>9</id>
+        <name>Ladies' Shorts</name>
+        <score>10</score>
+    </app>
+    <app>
+        <id>10</id>
+        <name>Ladies' Night Dresses</name>
+        <score>20</score>
+    </app>
+    <app>
+        <id>11</id>
+        <name>Earings/Rings</name>
+        <score>8</score>
+    </app>
+    <app>
+        <id>12</id>
+        <name>Necklaces</name>
+        <score>10</score>
+    </app>
+    <app>
+        <id>13</id>
+        <name>Heels</name>
+        <score>15</score>
+    </app>
+    <app>
+        <id>14</id>
+        <name>Hand Bags</name>
+        <score>25</score>
+    </app>
+    <app>
+        <id>15</id>
+        <name>Groom's Wear</name>
+        <score>50</score>
+    </app>
+    <app>
+        <id>16</id>
+        <name>Mens' Tshirts</name>
+        <score>10</score>
+    </app>
+    <app>
+        <id>17</id>
+        <name>Mens' Shirts</name>
+        <score>15</score>
+    </app>
+    <app>
+        <id>18</id>
+        <name>Mens' Office Trousers</name>
+        <score>22</score>
+    </app>
+    <app>
+        <id>19</id>
+        <name>Mens' Shorts</name>
+        <score>10</score>
+    </app>
+    <app>
+        <id>20</id>
+        <name>Mens' Denims</name>
+        <score>24</score>
+    </app>
+    <app>
+        <id>21</id>
+        <name>Sarongs</name>
+        <score>10</score>
+    </app>
+    <app>
+        <id>22</id>
+        <name>Mens' Night Dresses</name>
+        <score>20</score>
+    </app>
+    <app>
+        <id>23</id>
+        <name>Wallets</name>
+        <score>20</score>
+    </app>
+    <app>
+        <id>24</id>
+        <name>Blassers</name>
+        <score>25</score>
+    </app>
+    <app>
+        <id>25</id>
+        <name>Mens' Ties/Bows</name>
+        <score>10</score>
+    </app>
+    <app>
+        <id>26</id>
+        <name>Frocks</name>
+        <score>8</score>
+    </app>
+    <app>
+        <id>27</id>
+        <name>Kids' Shirts</name>
+        <score>6</score>
+    </app>
+    <app>
+        <id>28</id>
+        <name>Kids' Tshirts</name>
+        <score>8</score>
+    </app>
+    <app>
+        <id>29</id>
+        <name>Kids' Skirts</name>
+        <score>5</score>
+    </app>
+    <app>
+        <id>30</id>
+        <name>Kids' Shorts</name>
+        <score>5</score>
+    </app>
+    <app>
+        <id>31</id>
+        <name>Pants/Denims</name>
+        <score>8</score>
+    </app>
+    <app>
+        <id>32</id>
+        <name>Kids' Leggings</name>
+        <score>5</score>
+    </app>
+    <app>
+        <id>33</id>
+        <name>Kids' Socks</name>
+        <score>3</score>
+    </app>
+    <app>
+        <id>34</id>
+        <name>Kids' Hats</name>
+        <score>3</score>
+    </app>
+    <app>
+        <id>35</id>
+        <name>Kids' Accessories</name>
+        <score>3</score>
+    </app>
+    <app>
+        <id>36</id>
+        <name>Kids' Ties/Bows</name>
+        <score>4</score>
+    </app>
+    <app>
+        <id>37</id>
+        <name>Kids' Footware</name>
+        <score>5</score>
+    </app>
+    <app>
+        <id>38</id>
+        <name>Travelling Bags</name>
+        <score>30</score>
+    </app>
+    <app>
+        <id>39</id>
+        <name>Gym Bags</name>
+        <score>20</score>
+    </app>
+    <app>
+        <id>40</id>
+        <name>Shades/Sunglasses</name>
+        <score>15</score>
+    </app>
+    <app>
+        <id>41</id>
+        <name>School Bags</name>
+        <score>20</score>
+    </app>
+    <app>
+        <id>42</id>
+        <name>Watches</name>
+        <score>25</score>
+    </app>
+    <app>
+        <id>43</id>
+        <name>Shoes</name>
+        <score>25</score>
+    </app>
+    <app>
+        <id>44</id>
+        <name>Belts</name>
+        <score>12</score>
+    </app>
+    <app>
+        <id>45</id>
+        <name>Footware</name>
+        <score>22</score>
+    </app>
+    </ApparelType>
+    <ConditionType>
+    <Condition>
+        <id>1</id>
+        <name>Used</name>
+        <score>1</score>
+    </Condition>
+    <Condition>
+        <id>2</id>
+        <name>Used in Good Condition</name>
+        <score>2</score>
+    </Condition>
+    <Condition>
+        <id>3</id>
+        <name>Not Used</name>
+        <score>3</score>
+    </Condition>
+    </ConditionType>
+    <TagType>
+     <Tag>
+        <id>1</id>
+        <name>Not Available</name>
+        <score>1</score>
+    </Tag>
+    <Tag>
+        <id>2</id>
+        <name>Available</name>
+        <score>3</score>
+    </Tag>
+    </TagType>
+    <BillType>
+    <Bill>
+        <id>1</id>
+        <name>Not Available</name>
+        <score>1</score>
+    </Bill>
+    <Bill>
+        <id>2</id>
+        <name>Available</name>
+        <score>3</score>
+    </Bill>
+    </BillType>
+    <BrandType>
+    <Brand>
+        <id>1</id>
+        <name>Unbranded</name>
+        <score>1</score>
+    </Brand>
+    <Brand>
+        <id>2</id>
+        <name>Moderate</name>
+        <score>2</score>
+    </Brand>
+    <Brand>
+        <id>3</id>
+        <name>Well Known</name>
+        <score>3</score>
+    </Brand>
+    <Brand>
+        <id>4</id>
+        <name>Luxurious</name>
+        <score>5</score>
+    </Brand>
+    </BrandType>
+</Apparels>

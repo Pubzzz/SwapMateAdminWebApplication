@@ -1,0 +1,111 @@
+<div id="app" data-app-name="Showroom Items" *ngIf="isLoading"></div>
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h4 class="m-0" >Items In Showroom</h4>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item" style="font-weight: bolder;" (click)="logMeOut()"><a href="#">Log Out</a></li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+      <!-- Button to Open the Modal -->
+    <div class="btns">
+        &nbsp;
+<button type="button" class="btn btn-primary" style=" margin-left: 13px; text-align: center;" title="Add to Donations" (click)="addDonations()"> <i-bs name="plus-square"
+width="20"
+  height="20"> 
+</i-bs>  Add to Donations</button> 
+</div> 
+    <!-- /.card-header -->
+    
+  <div class="card-body" style="line-height: 1;">
+      <table id="example1" class="table table-bordered table-striped" *ngIf="!isLoading" datatable [dtOptions]="dtOptions">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Category</th>
+            <th>Name</th>
+            <th>Size</th>
+            <th>Points</th>
+            <th>Timeframe</th>
+            <th>Additional Notes</th>
+            <th>Images</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of showrooms;"  >
+                <td>{{item.srid}}</td>
+                <td>{{item.category}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.size}}</td>
+                <td>{{item.points}}</td>
+                <td><input type="checkbox" style="align-items: center;" (change)="onToggle(item)">
+                    &nbsp;&nbsp;{{item.date}} days</td>
+                <td>{{item.notes}}</td>
+            <td>&nbsp; <i-bs name="cloud-upload" width="20" height="20"style="color:green;cursor: pointer;"title="Upload"data-toggle="modal" data-target="#imagesForm" (click)="RowSelected(item); getSpecificFiles();"></i-bs></td>
+  <td>&nbsp;<i-bs name="trash" width="20" height="20"style="color:red;cursor: pointer;"title="Sold Out" (click)="deleteItem(item)">
+  </i-bs></td>
+              </tr>
+            <!--<tr>
+            <th><input type="checkbox" style="align-items: center;"></th>
+            <td>1</td>
+            <td>Kids' Wear</td>
+            <td>Infant Socks</td>
+            <td>S</td>
+            <td>120</td>
+            <td>14 days</td>
+            <td></td>
+            <td>&nbsp; <i-bs name="cloud-upload" width="20" height="20"style="color:green;cursor: pointer;"title="Upload"data-toggle="modal" data-target="#imagesForm"></i-bs></td>
+  <td>&nbsp;<i-bs name="trash" width="20" height="20"style="color:red;cursor: pointer;"title="Sold Out">
+  </i-bs></td>
+          </tr>
+          <tr>
+            <th><input type="checkbox" style="align-items: center;"></th>
+            <td>2</td>
+            <td>Ladies' Wear</td>
+            <td>Bridal Gown</td>
+            <td>XL</td>
+            <td>1650</td>
+            <td>2 days</td>
+            <td>Rose gold material</td>
+            <td>&nbsp; <i-bs name="cloud-upload" width="20" height="20"style="color:green;cursor: pointer;"title="Upload" data-toggle="modal" data-target="#imagesForm"></i-bs></td>
+  <td>&nbsp;<i-bs name="trash" width="20" height="20"style="color:red;cursor: pointer;"title="Sold Out">
+  </i-bs></td>
+          </tr>-->
+        </tbody>
+      </table>
+    </div>
+    <!-- /.card-body --> 
+    <!-- /.card -->    
+    <!-- Modal -->
+<div class="modal fade" id="imagesForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Complete Item Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="my-3">
+                <app-upload-form [productID]="productID"></app-upload-form>
+              </div>
+              <div class="my-2">
+                <app-upload-list [productID]="productID"></app-upload-list>
+              </div>
+      </div>
+    </div>
+  </div> 

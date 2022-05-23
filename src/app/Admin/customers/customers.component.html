@@ -1,0 +1,165 @@
+<div id="app" data-app-name="Customer Details" *ngIf="isLoading"></div>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Customers</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item" style="font-weight: bolder;" (click)="logMeOut()"><a href="#">Log Out</a></li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+ <!-- /.card-header -->
+  
+ <div class="card-body"  style="line-height: 1;">
+    <table id="example1" class="table table-bordered table-striped" *ngIf="!isLoading" datatable [dtOptions]="dtOptions">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Contact</th>
+          <th>Date</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody >
+          <tr *ngFor="let item of customers;">
+              <td>{{item.firstname}}</td>
+              <td>{{item.lastname}}</td>
+              <td>{{item.email}}</td>
+              <td>{{item.contact}}</td>
+              <td>{{item.regdate}}</td>
+              <td style="text-align: right; cursor: pointer;"><i class="fas fa-ellipsis-v" title="More Information" style="color: gray;" data-toggle="modal" data-target="#customerForm"
+                (click)="RowSelected(item)"></i></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- /.card-body --> 
+   <!-- Modal -->
+<div class="modal fade" id="customerForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{this.customerFN}} {{this.customerLN}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="resetField()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div *ngIf="isSuccess" >
+            <div class="row" style="padding-right: 3%;">
+              <div class="col-sm-12">
+                <div class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show">
+                  <button type="button" class="close font__size-18" data-dismiss="alert" >
+                                            <span aria-hidden="true"><a>
+                            <!--<i class="fas fa-times greencross"></i>-->
+                            <i-bs name="x" class="greencross"
+            width="20"
+              height="20">
+</i-bs>
+                            </a></span>
+                                            <span class="sr-only">Close</span> 
+                                        </button>
+                                        <i-bs name="check-circle"
+                                        width="20"
+                                          height="20" class="start-icon faa-tada animated"></i-bs>
+                            <!--</i-bs><i class="start-icon far fa-check-circle faa-tada animated"></i>-->
+                  <strong class="font__weight-semibold">Successfull!</strong> Transaction Made.
+                </div>
+              </div>
+            </div>
+          </div>       
+          <div class="container mt-5" *ngIf="isNSuccess">
+            <div class="row" style="padding-right: 3%;">
+              <div class="col-sm-12">
+                <div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
+                    <!--<i class="start-icon far fa-times-circle faa-pulse animated"></i>-->
+                    <i-bs name="x-circle" class="start-icon faa-pulse animated "
+            width="20"
+              height="20">
+</i-bs>
+                    <button type="button" class="close font__size-18" data-dismiss="alert" >
+                        <span aria-hidden="true"><a>
+        <!--<i class="fas fa-times greencross"></i>-->
+        <i-bs name="x" class="redcross"
+    width="20"
+    height="20">
+    </i-bs>
+        </a></span>
+                        <span class="sr-only">Close</span> 
+                    </button>
+                   Something Went Wrong! Try Again.
+                  </div>
+              </div>
+            </div>
+          </div> 
+        <div class="modal-body">
+            <table class="form_table" *ngFor="let subitem of selectedcustomer;">
+                <tr>
+                  <td>
+                    <label>Customer NIC:</label>
+                  </td>
+                  <td>
+                    <span>&nbsp;&nbsp;&nbsp;{{subitem.nic}}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label>Customer Age:</label>
+                  </td>
+                  <td>
+                    <span>&nbsp;&nbsp;&nbsp;{{subitem.age}}</span>
+                  </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Customer Gender:</label>
+                      </td>
+                      <td>
+                        <span>&nbsp;&nbsp;&nbsp;{{subitem.gender}}</span>
+                      </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Customer Address:</label>
+                      </td>
+                      <td>
+                        <span>&nbsp;&nbsp;&nbsp;{{subitem.address}}</span>
+                      </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Current Points:</label>
+                      </td>
+                      <td>
+                        <span>&nbsp;&nbsp;&nbsp;{{subitem.points}}</span>
+                      </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Make Transaction:</label>
+                      </td>
+                      <td>
+                        &nbsp;&nbsp;&nbsp;<input type="text" placeholder="Enter Amount..." style="font-size: 14px;"[(ngModel)]="customer.points">
+                      </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="text-align: right;"> 
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetField()">Close</button>
+                            <button type="button" class="btn btn-primary" (click)="makeTransaction()">Proceed Transfer</button>
+                          </div>
+                    </td>
+                </tr>
+  
