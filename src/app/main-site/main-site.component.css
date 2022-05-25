@@ -36,18 +36,15 @@ body {
   position: relative;
   -webkit-text-size-adjust: none;
   background: #fff;
-  
 }
 
 body > .wrapper {
   position: relative;
 }
 
-
 img {
   border: 0;
   vertical-align: top;
-  
 }
 a {
   color: #000;
@@ -22766,7 +22763,7 @@ button {
   top: 0;
   width: 900px;
   height: 100%;
-  background-image: url("https://thoughtcatalog.com/wp-content/uploads/2015/12/shutterstock_227913877.jpg?w=786");
+  background-image: url("https://techgirl.com/wp-content/uploads/2021/04/wornontv.jpg");
   background-size: cover;
   transition: transform 1.2s ease-in-out;
 }

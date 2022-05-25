@@ -59,59 +59,45 @@ export class DonationsComponent implements OnInit {
     console.log(this.selectedDonations);
   }
   clearDonations() {
-    if (this.selectedDonations.length == 0) {
-      Swal.fire({
-        title: 'No items selected!',
-        showClass: {
-          popup: 'animate__animated animate__fadeInDown',
-        },
-        hideClass: {
-          popup: 'animate__animated animate__fadeOutUp',
-        },
-      });
-    } else {
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, clear selected!',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire(
-            'Deleted!',
-            'The selected donations have been deleted.',
-            'success'
-          );
-          for (let i = 0; i < this.selectedDonations.length; i++) {
-            this.donationService
-              .delete(this.selectedDonations[i].did)
-              .subscribe({
-                next: (res) => {
-                  console.log(res);
-                },
-                error: (e) => console.error(e),
-              });
-            this.retrieveRecords();
-          }
-          //let timerInterval;
-          //Swal.fire({
-          //  title: 'Someting went Wrong, Try Again!',
-          //  timer: 2000,
-          //  timerProgressBar: true,
-          //  willClose: () => {
-          //    clearInterval(timerInterval);
-          //  },
-          //}).then((result) => {
-          //  /* Read more about handling dismissals below */
-          //  if (result.dismiss === Swal.DismissReason.timer) {
-          //    console.log('I was closed by the timer');
-          //  }
-          //});
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, clear selected!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'The selected donations have been deleted.',
+          'success'
+        );
+        for (let i = 0; i < this.selectedDonations.length; i++) {
+          this.donationService.delete(this.selectedDonations[i].did).subscribe({
+            next: (res) => {
+              console.log(res);
+            },
+            error: (e) => console.error(e),
+          });
         }
-      });
-    }
+        //let timerInterval;
+        //Swal.fire({
+        //  title: 'Someting went Wrong, Try Again!',
+        //  timer: 2000,
+        //  timerProgressBar: true,
+        //  willClose: () => {
+        //    clearInterval(timerInterval);
+        //  },
+        //}).then((result) => {
+        //  /* Read more about handling dismissals below */
+        //  if (result.dismiss === Swal.DismissReason.timer) {
+        //    console.log('I was closed by the timer');
+        //  }
+        //});
+      }
+      this.retrieveRecords();
+    });
   }
 }

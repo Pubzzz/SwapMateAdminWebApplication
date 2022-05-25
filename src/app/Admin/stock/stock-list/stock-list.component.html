@@ -190,53 +190,7 @@
               </div>
           </form>
       </div>   
-      <div class="container mt-5" *ngIf="isTranSuccess" >
-        <div class="row" style="padding-right: 3%;">
-          <div class="col-sm-12">
-            <div class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show">
-              <button type="button" class="close font__size-18" data-dismiss="alert" >
-                                        <span aria-hidden="true"><a>
-                        <!--<i class="fas fa-times greencross"></i>-->
-                        <i-bs name="x" class="greencross"
-        width="20"
-          height="20">
-</i-bs>
-                        </a></span>
-                                        <span class="sr-only">Close</span> 
-                                    </button>
-                                    <i-bs name="check-circle"
-                                    width="20"
-                                      height="20" class="start-icon faa-tada animated"></i-bs>
-                        <!--</i-bs><i class="start-icon far fa-check-circle faa-tada animated"></i>-->
-              <strong class="font__weight-semibold">Successfull!</strong> Transaction completed.
-            </div>
-          </div>
-        </div>
-      </div>       
-      <div class="container mt-5" *ngIf="isTranNSuccess">
-        <div class="row" style="padding-right: 3%;">
-          <div class="col-sm-12">
-            <div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
-                <!--<i class="start-icon far fa-times-circle faa-pulse animated"></i>-->
-                <i-bs name="x-circle" class="start-icon faa-pulse animated "
-        width="20"
-          height="20">
-</i-bs>
-                <button type="button" class="close font__size-18" data-dismiss="alert" >
-                    <span aria-hidden="true"><a>
-    <!--<i class="fas fa-times greencross"></i>-->
-    <i-bs name="x" class="redcross"
-width="20"
-height="20">
-</i-bs>
-    </a></span>
-                    <span class="sr-only">Close</span> 
-                </button>
-               Something Went Wrong! Try Again.
-              </div>
-          </div>
-        </div>
-      </div>       
+      
       <h5 class="modal-title" id="exampleModalLabel">Customer Swap Information</h5><br/>
             <div class="tableFixHead" >
                 <table style="font-size: 12px; line-height: 1px;" >
@@ -251,9 +205,9 @@ height="20">
               <br> 
               <div class="form-group col-md-12 col-sm-12 col-xs-12 text-right">
                 <p style="font-size: 12px;">Total Points : <span style="font-weight: bold; font-size: 18px;">{{userTot}}</span></p>
-                <input type="text" name="nic" id="nic" style="height: 30px;background-color:#DCDCDC; border: none;" placeholder="  Customer Email" [(ngModel)]="customer.email">
+                <input type="text" name="nic" id="nic" style="height: 30px;background-color:#DCDCDC; border: none;" placeholder="  Customer NIC">
                 &nbsp;&nbsp;
-                <button type="button" class="btn btn-primary" (click)="makeTransaction()">Transfer</button>
+                <button type="button" class="btn btn-primary">Transfer</button>
               </div>
   </div>
   </div>
@@ -313,7 +267,7 @@ height="20">
             <span aria-hidden="true">&times;</span>
           </button>      
         </div>
-        <div class="container mt-5" *ngIf="isSSuccess" >
+        <div class="container mt-5" *ngIf="isSuccess" >
             <div class="row" style="padding-right: 3%;">
               <div class="col-sm-12">
                 <div class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show">
@@ -331,12 +285,12 @@ height="20">
                                         width="20"
                                           height="20" class="start-icon faa-tada animated"></i-bs>
                             <!--</i-bs><i class="start-icon far fa-check-circle faa-tada animated"></i>-->
-                  <strong class="font__weight-semibold">Successfull!</strong> Added to Showroom.
+                  <strong class="font__weight-semibold">Successfull!</strong> Added to Stock.
                 </div>
               </div>
             </div>
           </div>       
-          <div class="container mt-5" *ngIf="isSNSuccess">
+          <div class="container mt-5" *ngIf="isNSuccess">
             <div class="row" style="padding-right: 3%;">
               <div class="col-sm-12">
                 <div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">

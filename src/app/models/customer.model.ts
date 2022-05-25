@@ -1,5 +1,4 @@
 export class Customer {
-  id?: string;
   cid?: string;
   address?: string;
   age?: number;

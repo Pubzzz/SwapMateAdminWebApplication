@@ -33,6 +33,11 @@ import { StoreComponent } from './customer/store/store.component';
 import { UploadFormComponent } from './admin/upload-form/upload-form.component';
 import { UploadListComponent } from './admin/upload-list/upload-list.component';
 import { UploadDetailsComponent } from './admin/upload-details/upload-details.component';
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatCardModule} from "@angular/material/card";
+import {MatListModule} from "@angular/material/list";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 const appRoutes: Routes = [
   {
@@ -87,6 +92,11 @@ const appRoutes: Routes = [
     HttpClientModule,
     NgxBootstrapIconsModule.pick(allIcons),
     DataTablesModule,
+    MatGridListModule,
+    MatCardModule,
+    MatListModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
   ],
   providers: [DatePipe, SwapmateDataService],
   bootstrap: [AppComponent],

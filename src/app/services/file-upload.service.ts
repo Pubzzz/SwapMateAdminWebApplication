@@ -4,7 +4,9 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { FileUpload } from '../models/file-upload.model';
-import { ShowroomService } from './showroom.service';
+import {ShowroomService} from "./showroom.service";
+import {AngularFirestore} from "@angular/fire/firestore";
+import firebase from "firebase/app";
 @Injectable({
   providedIn: 'root',
 })
@@ -12,8 +14,9 @@ export class FileUploadService {
   private basePath = '/uploads';
   constructor(
     private db: AngularFireDatabase,
+    private firestore:AngularFirestore,
     private storage: AngularFireStorage,
-    private showroomService: ShowroomService
+    private showroomService:ShowroomService,
   ) {}
   pushFileToStorage(fileUpload: FileUpload): Observable<number | undefined> {
     const filePath = `${this.basePath}/${fileUpload.prodID}/${fileUpload.file.name}`;
@@ -27,6 +30,7 @@ export class FileUploadService {
             fileUpload.url = downloadURL;
             fileUpload.name = fileUpload.file.name;
             this.saveFileData(fileUpload);
+            this.saveFileDataRealTime(fileUpload);
           });
         })
       )
@@ -35,34 +39,49 @@ export class FileUploadService {
   }
 
   saveFileData(fileUpload: FileUpload): void {
-    this.showroomService
-      .uploadImages(fileUpload.prodID, { image: fileUpload.url })
-      .subscribe({
-        next: (data) => {
-          alert(data);
-          console.log(data);
-        },
-        error: (e) => console.error(e),
-      });
+    this.showroomService.uploadImages(fileUpload.prodID,{'image':fileUpload.url}).subscribe({
+      next: (data) => {
+      },
+      error: (e) => console.error(e),
+    });
   }
+
   getFiles(numberItems: number, prodID: string): AngularFireList<FileUpload> {
-    console.log(
-      this.db.list(this.basePath, (ref) => ref.limitToLast(numberItems))
-    );
-    return this.db.list(this.basePath, (ref) => ref.limitToLast(numberItems));
+
+    if(prodID!==undefined){
+      let url=`${this.basePath}/${prodID}`;
+      return  this.db.list(url, (ref) => ref.limitToLast(numberItems));
+    }
   }
+
+  private saveFileDataRealTime(fileUpload: FileUpload): void {
+    let url=`${this.basePath}/${fileUpload.prodID}`;
+    this.db.list(url).push(fileUpload);
+  }
+
   deleteFile(fileUpload: FileUpload): void {
-    this.deleteFileDatabase(fileUpload.key)
+    this.deleteFileDatabase(fileUpload.key,fileUpload.prodID)
       .then(() => {
-        this.deleteFileStorage(fileUpload.name);
-      })
+        this.deleteFileStorage(fileUpload.name,fileUpload.prodID);
+      }).then(async () => {
+      await this.deleteFileFromFireStore(fileUpload.url, fileUpload.prodID);
+    })
       .catch((error) => console.log(error));
   }
-  private deleteFileDatabase(key: string): Promise<void> {
-    return this.db.list(this.basePath).remove(key);
+  private deleteFileDatabase(key: string,id:string): Promise<void> {
+    let url=`${this.basePath}/${id}`;
+    return this.db.list(url).remove(key);
   }
-  private deleteFileStorage(name: string): void {
-    const storageRef = this.storage.ref(this.basePath);
+  private deleteFileStorage(name: string,id:string): void {
+    let url=`${this.basePath}/${id}`;
+    const storageRef = this.storage.ref(url);
     storageRef.child(name).delete();
+  }
+
+  private deleteFileFromFireStore(key: string,id:string): Promise<void> {
+    return this.firestore.doc('Showroom/' + id).set(
+      { ['pictures']:  firebase.firestore.FieldValue.arrayRemove(key)},
+      { merge: true }
+    );
   }
 }

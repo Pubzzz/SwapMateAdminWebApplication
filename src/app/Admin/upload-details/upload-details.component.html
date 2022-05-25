@@ -1,5 +1,12 @@
-<a href="{{ fileUpload.url }}">{{ fileUpload.name }}</a>
-<button (click)="deleteFileUpload(fileUpload)"
-  class="btn btn-danger btn-sm" style="float: right">
-  Delete
-</button>
+
+
+<mat-card class="example-card img-fluid" style="  max-width: 200px; max-height: 200px; height: 200px ; width: 200px"  >
+  <img mat-card-image src="{{fileUpload.url}}}" alt="{{fileUpload.name}}}" height="120">
+  <mat-card-actions>
+    <button (click)="deleteFileUpload(fileUpload)"
+            class="btn btn-danger btn-sm" style="float: inside">
+      Delete
+    </button>
+  </mat-card-actions>
+</mat-card>
+

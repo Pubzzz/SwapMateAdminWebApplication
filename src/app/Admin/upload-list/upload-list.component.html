@@ -1,11 +1,17 @@
-<div class="card">
-    <div class="card-header">List of Files</div>
-    <ul
-      class="list-group list-group-flush"
-      *ngFor="let file of fileUploads"
-    >
-      <li class="list-group-item">
-        <app-upload-details [fileUpload]='file' [productID]="productID"></app-upload-details>
-      </li>
-    </ul>
+<div >
+    <h4>Upload Images</h4>
+
+    <mat-spinner  style="margin-left: 45%" *ngIf="isLoading"></mat-spinner>
+
+
+<!--  <div *ngIf="fileUploads.length===0">-->
+<!--    No Images-->
+<!--  </div>-->
+
+  <mat-grid-list cols="3" rowHeight="1:1" >
+    <mat-grid-tile *ngFor="let file of fileUploads">
+      <app-upload-details [fileUpload]='file' [productID]="productID" ></app-upload-details>
+    </mat-grid-tile>
+  </mat-grid-list>
+
   </div>

@@ -6,9 +6,6 @@
   top: 0;
   bottom: 0;
 }
-.btns{
-    display:inline;
-}
 #app:empty:before {
   -webkit-animation: page-loading-spin 8s infinite linear;
   animation: page-loading-spin 8s infinite linear;
