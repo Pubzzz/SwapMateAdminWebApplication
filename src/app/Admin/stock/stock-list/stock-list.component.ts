@@ -3,6 +3,8 @@ import { StockService } from 'src/app/services/stock.service';
 import { ShowroomService } from 'src/app/services/showroom.service';
 import { Stock } from 'src/app/models/stock.model';
 import { Showroom } from 'src/app/models/showroom.model';
+import { CustomerService } from 'src/app/services/customer.service';
+import { Customer } from 'src/app/models/customer.model';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import xml2js from 'xml2js';
@@ -20,14 +22,21 @@ export class StockListComponent implements OnInit {
   productname: string;
   productcategory: string;
   productnotes: string;
+  points: string;
+  new_points = 0;
   selectedStock = [];
   addedStock = [];
   tempStock = [];
   isLoading = false;
   isSuccess = false;
   isNSuccess = false;
+  isTranSuccess = false;
+  isTranNSuccess = false;
+  isSNSuccess = false;
+  isSSuccess = false;
   isRejected = false;
   public Apparels: any;
+  public retrievedCustomer: any;
   apparelsAll = [];
   apparelTypesArr = [];
   conditionTypesArr = [];
@@ -50,6 +59,8 @@ export class StockListComponent implements OnInit {
   stock: Stock = new Stock();
   showrooms?: Showroom[];
   showroom: Showroom = new Showroom();
+  customers?: Customer[];
+  customer: Customer = new Customer();
   myDate = new Date().toLocaleString();
   public _values1: string[] = [
     "Ladies' Wear",
@@ -63,7 +74,8 @@ export class StockListComponent implements OnInit {
     private router: Router,
     private datePipe: DatePipe,
     private http: HttpClient,
-    private showroomService: ShowroomService
+    private showroomService: ShowroomService,
+    private customerService: CustomerService
   ) {
     this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
   }
@@ -204,6 +216,10 @@ export class StockListComponent implements OnInit {
     setTimeout(() => {
       this.isSuccess = false;
       this.isNSuccess = false;
+      this.isTranSuccess = false;
+      this.isTranNSuccess = false;
+      this.isSNSuccess = false;
+      this.isSSuccess = false;
       this.refreshList();
     }, 2000);
   }
@@ -233,8 +249,8 @@ export class StockListComponent implements OnInit {
       if (element == this.productID) this.stocks.splice(index, 1);
     });
     console.log(this.stocks);
-    this.isSuccess = true;
-    this.isNSuccess = false;
+    this.isSNSuccess = false;
+    this.isSSuccess = true;
     this.FadeOutLink2();
   }
   //getting appareltype data function
@@ -349,6 +365,40 @@ export class StockListComponent implements OnInit {
       });
     });
   }
+  makeTransaction(): void {
+    this.customerService.get(this.customer.email).subscribe({
+      next: (res) => {
+        this.retrievedCustomer = res;
+      },
+      error: (e) => console.error(e),
+    });
+    this.new_points = this.userTot + parseInt(this.retrievedCustomer.points);
+    const data = {
+      id: this.retrievedCustomer.id,
+      cid: this.retrievedCustomer.cid,
+      points: this.new_points.toString(),
+      nic: this.retrievedCustomer.nic,
+      address: this.retrievedCustomer.address,
+      age: this.retrievedCustomer.age,
+      contact: this.retrievedCustomer.contact,
+      email: this.retrievedCustomer.email,
+      gender: this.retrievedCustomer.gender,
+      regdate: this.retrievedCustomer.regdate,
+      size: this.retrievedCustomer.size,
+      firstname: this.retrievedCustomer.firstname,
+      lastname: this.retrievedCustomer.lastname,
+    };
+    console.log(data);
+    this.customerService.update(data).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (e) => console.error(e),
+    });
+    this.isTranSuccess = true;
+    this.isTranNSuccess = false;
+    this.FadeOutLink2();
+  }
 
   Calculate() {
     this.apparelTypesArr = this.Apparels[0].value;
@@ -434,5 +484,6 @@ export class StockListComponent implements OnInit {
   resettempStock() {
     this.tempStock = [];
     this.userTot = 0;
+    this.customer.email = '';
   }
 }

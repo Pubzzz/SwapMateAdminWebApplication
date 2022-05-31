@@ -19,20 +19,22 @@ export class CustomerService {
     return this.http.get<Customer[]>(baseUrl);
   }
 
-  get(nic: any): Observable<Customer> {
-    return this.http.get(`${baseUrl}/${nic}`);
+  get(email: any): Observable<Customer> {
+    return this.http.get(
+      `http://localhost:8080/api/v1/getCustomerDetails?email=${email}`
+    );
   }
 
   create(data: any): Observable<any> {
     return this.http.post(baseUrl, data);
   }
 
-  update(nic: any, data: any): Observable<any> {
-    return this.http.put(`${baseUrl}/${nic}`, data);
+  update(data: any): Observable<any> {
+    return this.http.put(`${baseUrl}`, data);
   }
 
-  delete(nic: any): Observable<any> {
-    return this.http.delete(`${baseUrl}?document_id=${nic}`);
+  delete(cid: any): Observable<any> {
+    return this.http.delete(`${baseUrl}?document_id=${cid}`);
   }
 
   deleteAll(): Observable<any> {

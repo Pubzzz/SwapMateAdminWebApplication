@@ -11,7 +11,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SelectionModel } from '@angular/cdk/collections';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import 'sweetalert2/src/sweetalert2.scss';
-import {map} from "rxjs/operators";
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-calculator',
@@ -20,8 +20,6 @@ import {map} from "rxjs/operators";
   providers: [DatePipe],
 })
 export class CalculatorComponent implements OnInit {
-
-
   isChecked = false;
   selectedItem = [];
   selectedItems = [];
@@ -30,7 +28,7 @@ export class CalculatorComponent implements OnInit {
   Days: any;
   isLoading = false;
   showrooms?: Showroom[];
-  selectedData:Showroom;
+  selectedData: Showroom;
   Showroom: Showroom = new Showroom();
   donations?: Donation[];
   Donation: Donation = new Donation();
@@ -75,7 +73,6 @@ export class CalculatorComponent implements OnInit {
     this.router.navigateByUrl('login');
   }
 
-
   retrieveRecords(): void {
     this.isLoading = true;
     this.showroomService.getAll().subscribe({
@@ -98,11 +95,11 @@ export class CalculatorComponent implements OnInit {
     });
   }
   RowSelected(u: any) {
-    this.selectedData=u;
+    this.selectedData = u;
     this.selectedItem[0] = u;
     this.productID = this.selectedItem[0].srid;
 
-    console.log(this.selectedData)
+    console.log(this.selectedData);
   }
   deleteItem(u: any) {
     Swal.fire({
@@ -136,36 +133,46 @@ export class CalculatorComponent implements OnInit {
     console.log(this.selectedItems);
   }
   addDonations() {
-    Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: 'Your work has been saved',
-      showConfirmButton: false,
-      timer: 1500,
-    });
-    for (let i = 0; i < this.selectedItems.length; i++) {
-      const data = {
-        did: this.selectedItems[i].srid,
-        category: this.selectedItems[i].category,
-        size: this.selectedItems[i].size,
-        date: this.myDate,
-        type: this.selectedItems[i].name,
-      };
-      this.donationService.create(data).subscribe({
-        next: (res) => {
-          console.log(res);
+    if (this.selectedItems.length == 0) {
+      Swal.fire({
+        title: 'Please select donation items!',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown',
         },
-        error: (e) => console.error(e),
-      });
-      this.showroomService.delete(this.selectedItems[i].srid).subscribe({
-        next: (res) => {
-          console.log(res);
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp',
         },
-        error: (e) => console.error(e),
       });
+    } else {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Your work has been saved',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      for (let i = 0; i < this.selectedItems.length; i++) {
+        const data = {
+          did: this.selectedItems[i].srid,
+          category: this.selectedItems[i].category,
+          size: this.selectedItems[i].size,
+          date: this.myDate,
+          type: this.selectedItems[i].name,
+        };
+        this.donationService.create(data).subscribe({
+          next: (res) => {
+            console.log(res);
+          },
+          error: (e) => console.error(e),
+        });
+        this.showroomService.delete(this.selectedItems[i].srid).subscribe({
+          next: (res) => {
+            console.log(res);
+          },
+          error: (e) => console.error(e),
+        });
+        this.refreshList();
+      }
     }
-    this.refreshList();
   }
-
-
 }
